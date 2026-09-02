@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- K: vertical bar + upper diagonal in katblue; lower leg is a rising signal
+       trace in warm katorange -->
+  <path d="M7 5 V27" stroke="#185FA5" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <path d="M25 5 L11 16.5" stroke="#185FA5" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <path d="M13 15.5 L21 24.5 H27" stroke="#C98A3A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

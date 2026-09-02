@@ -1,0 +1,443 @@
+/* Kathryn site theme.
+ *
+ * Palette comes from the tech report: katblue rgb(24,95,165) = #185FA5 and
+ * katorange rgb(133,79,11) = #854F0B. Light mode is deliberately warm — an
+ * aged-paper cream, never pure white. Dark mode keeps Starlight's defaults
+ * with the accent ramp swapped for a lightened katblue.
+ */
+
+/* ---- light mode: warm cream ---------------------------------------------- */
+:root[data-theme='light'] {
+  /* backgrounds */
+  --sl-color-bg: #f6f1e3;
+  --sl-color-bg-nav: #f1ebd9;
+  --sl-color-bg-sidebar: #f1ebd9;
+  --sl-color-bg-inline-code: #ece4cf;
+
+  /* warm-tinted gray ramp (Starlight uses white..gray-7 in light mode) */
+  --sl-color-white: #2e2a22;
+  --sl-color-gray-1: #3d382d;
+  --sl-color-gray-2: #4d473a;
+  --sl-color-gray-3: #6e6754;
+  --sl-color-gray-4: #91886f;
+  --sl-color-gray-5: #c4b995;
+  --sl-color-gray-6: #e6ddc4;
+  --sl-color-gray-7: #efe9d8;
+  --sl-color-black: #f6f1e3;
+
+  --sl-color-hairline: #ddd3ba;
+  --sl-color-hairline-light: #e4dbc4;
+  --sl-color-hairline-shade: #d6cbae;
+
+  --sl-color-text: #3a352a;
+  --sl-color-text-accent: #185fa5;
+
+  /* katblue accent ramp */
+  --sl-color-accent-low: #d5e2f0;
+  --sl-color-accent: #185fa5;
+  --sl-color-accent-high: #123f6e;
+
+  /* semantic asides tinted warm */
+  --sl-color-orange-low: #f0e2cc;
+  --sl-color-orange: #854f0b;
+  --sl-color-orange-high: #5e3a09;
+}
+
+:root[data-theme='light'] ::selection {
+  background: #eeddbd;
+}
+
+:root[data-theme='light'] mark {
+  background: #f3dfb4;
+  color: inherit;
+}
+
+/* ---- dark mode: default surfaces, kat accents ----------------------------- */
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #10304f;
+  --sl-color-accent: #3d87d6;
+  --sl-color-accent-high: #b3d1ee;
+}
+
+:root[data-theme='dark'] a:hover {
+  color: #c98a3a;
+}
+
+/* ---- global polish -------------------------------------------------------- */
+:root {
+  --sl-content-width: 47rem;
+}
+
+/* thin kat accent line under the site header */
+header.header {
+  border-bottom: 1px solid var(--sl-color-hairline);
+  background-image: linear-gradient(90deg, #185fa5, #c98a3a);
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+  background-position: bottom;
+}
+
+/* ---- landing page (splash template) --------------------------------------- */
+[data-has-hero] .hero {
+  padding-block: 3rem;
+}
+
+[data-has-hero] .hero h1 {
+  letter-spacing: -0.02em;
+}
+
+[data-has-hero] .hero .tagline {
+  max-width: 40ch;
+}
+
+/* Carolyne callout — occupies the hero's image slot (right side on desktop),
+ * styled as its own bordered card so its copy is never mistaken for
+ * Kathryn's own tagline. */
+.hero > .hero-html {
+  order: 2;
+}
+
+.kat-hero-carolyne {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 1.5rem;
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 0.75rem;
+  background: var(--sl-color-bg-sidebar);
+  text-align: left;
+}
+
+.kat-hero-carolyne-badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: var(--sl-text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--sl-color-orange-high);
+  background: var(--sl-color-orange-low);
+}
+
+.kat-hero-carolyne-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.kat-hero-carolyne-logo {
+  width: 1.6rem;
+  height: 1.6rem;
+  flex-shrink: 0;
+}
+
+.kat-hero-carolyne-name {
+  font-size: var(--sl-text-2xl);
+  font-weight: 600;
+  color: var(--sl-color-white);
+  margin: 0;
+}
+
+.kat-hero-carolyne-desc {
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-gray-3);
+  margin: 0;
+}
+
+.kat-hero-carolyne-link {
+  font-size: var(--sl-text-sm);
+  font-weight: 600;
+}
+
+/* side-by-side Python → Verilog sample on the landing page */
+.kat-code-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (max-width: 72rem) {
+  .kat-code-pair {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kat-code-pair > div > p:first-child {
+  font-size: var(--sl-text-sm);
+  font-weight: 600;
+  color: var(--sl-color-gray-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+/* keep the splash page airy */
+[data-has-hero] .sl-container h2 {
+  margin-top: 3.5rem;
+}
+
+/* ---- landing: stats band -------------------------------------------------- */
+.kat-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 50rem) {
+  .kat-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kat-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.4rem 1.2rem;
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 0.75rem;
+  background: var(--sl-color-bg-sidebar);
+  background-image: linear-gradient(180deg, transparent, transparent);
+}
+
+.kat-stat-num {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--sl-color-text-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.kat-stat-label {
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-gray-3);
+}
+
+/* ---- resizable panes ------------------------------------------------------ */
+/* Drag handles injected by /scripts/resizable-panes.js. Hidden on mobile where
+ * the sidebar/TOC collapse; shown once the two-column layout kicks in. */
+.kat-resize-handle {
+  display: none;
+  width: 9px;
+  cursor: col-resize;
+  z-index: var(--sl-z-index-menu, 50);
+  touch-action: none;
+}
+
+/* the visible grip: a hairline that thickens and turns kat-blue on hover/drag */
+.kat-resize-handle::before {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  background: transparent;
+  transition: width 0.12s ease, background-color 0.12s ease;
+}
+.kat-resize-handle:hover::before,
+.kat-resize-handle:focus-visible::before,
+body.kat-resizing .kat-resize-handle::before {
+  width: 3px;
+  background: var(--sl-color-accent);
+}
+.kat-resize-handle:focus-visible {
+  outline: none;
+}
+
+/* left: fixed strip riding the sidebar's right edge */
+@media (min-width: 50rem) {
+  .kat-resize-left {
+    display: block;
+    position: fixed;
+    inset-block: var(--sl-nav-height) 0;
+    inset-inline-start: var(--sl-sidebar-width);
+    transform: translateX(-50%);
+  }
+}
+
+/* right: sits on the divider between content and the "On this page" TOC */
+@media (min-width: 72rem) {
+  .kat-resize-right {
+    display: block;
+    position: absolute;
+    inset-block: var(--sl-nav-height) 0;
+    inset-inline-start: 0;
+    transform: translateX(-50%);
+  }
+}
+
+/* while dragging, kill text selection and force the resize cursor everywhere */
+body.kat-resizing,
+body.kat-resizing * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}
+
+/* ---------------------------------------------------------------------------
+   mermaid diagrams
+   Diagrams render into a <pre class="mermaid">, so an inherited font would be
+   the monospace code font — while mermaid measures labels with a sans font,
+   leaving node boxes too small and text overflowing. Pin the same explicit
+   sans stack as themeVariables.fontFamily in astro.config.mjs.
+--------------------------------------------------------------------------- */
+pre.mermaid,
+pre.mermaid svg {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+/* cap rendered diagram height so tall flowcharts stay proportionate to the
+   text column. Width needs no cap: mermaid's inline max-width already bounds
+   each svg to its natural size within the column (and must not be overridden,
+   or small diagrams would stretch UP to fill it). Capped diagrams shrink to
+   fit and stay centered via the svg's default preserveAspectRatio. */
+pre.mermaid svg {
+  max-height: 26rem;
+}
+
+/* pan & zoom (public/scripts/diagram-pan-zoom.js): each diagram is a clipped
+   viewport — drag pans, Ctrl+scroll zooms, double-click resets */
+pre.mermaid {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+}
+pre.mermaid.kat-diagram-dragging {
+  cursor: grabbing;
+}
+pre.mermaid:focus-visible {
+  outline: 2px solid var(--sl-color-accent);
+  outline-offset: 2px;
+}
+pre.mermaid::after {
+  content: 'drag to pan · Ctrl+scroll to zoom · double-click to reset';
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.4rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 0.4rem;
+  font-size: 0.68rem;
+  color: var(--sl-color-gray-3);
+  background: color-mix(in srgb, var(--sl-color-bg) 80%, transparent);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+pre.mermaid:hover::after,
+pre.mermaid:focus-visible::after {
+  opacity: 1;
+}
+
+/* on-diagram zoom buttons (injected by diagram-pan-zoom.js) */
+.kat-diagram-controls {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  gap: 0.25rem;
+  z-index: 2;
+  opacity: 0.55;
+  transition: opacity 0.15s ease;
+}
+pre.mermaid:hover .kat-diagram-controls,
+pre.mermaid:focus-within .kat-diagram-controls {
+  opacity: 1;
+}
+.kat-diagram-controls button {
+  width: 1.6rem;
+  height: 1.6rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--sl-color-gray-2);
+  background: var(--sl-color-bg);
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.35rem;
+  cursor: pointer;
+}
+.kat-diagram-controls button:hover {
+  color: var(--sl-color-white);
+  background: var(--sl-color-gray-6);
+  border-color: var(--sl-color-gray-3);
+}
+
+/* ---------------------------------------------------------------------------
+   content figures (raster images)
+   The cppbook figures are black line art on full transparency — unreadable on
+   the dark theme without help. Light mode: a white "chip" card (background,
+   padding, border, radius). Dark mode: no light chip — the filter inverts the
+   art (black lines → light) and the chip's white background inverts with it
+   into a near-black card; hue-rotate(180deg) keeps colored fills in their
+   original hue family. Scoped to .sl-markdown-content so the header logo and
+   hero are untouched; mermaid renders as <svg> inside pre.mermaid, not <img>,
+   so diagrams are unaffected.
+--------------------------------------------------------------------------- */
+.sl-markdown-content img {
+  display: block;
+  margin-inline: auto;
+  /* keep figures proportionate to the text column: cap width AND height
+     (portrait diagrams would otherwise fill the whole viewport). The browser
+     preserves aspect ratio against whichever cap binds. */
+  max-width: min(100%, 36rem);
+  max-height: 26rem;
+  width: auto;
+  height: auto;
+  background: #ffffff;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.5rem;
+}
+
+:root[data-theme='dark'] .sl-markdown-content img {
+  filter: invert(0.92) hue-rotate(180deg);
+  /* the filter inverts the border too — this light gray lands on a subtle
+     dark gray after inversion */
+  border-color: #cfcfcf;
+}
+
+/* dark-native screenshots (terminal captures) stay un-inverted in dark mode;
+   they just trade the light chip for a dark surface */
+:root[data-theme='dark'] .sl-markdown-content img[src*='prof_running'] {
+  filter: none;
+  background: var(--sl-color-gray-6);
+  border-color: var(--sl-color-gray-5);
+}
+
+/* ---- footer copyright ------------------------------------------------------ */
+/* Rendered by src/components/Footer.astro on every page. The docs carry no
+   license grant, so the notice states the reservation and names the canonical
+   host — a mirror that strips it is easier to argue against. */
+.kat-copyright {
+  margin: 1.5rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--sl-color-gray-5);
+  font-size: var(--sl-text-xs);
+  line-height: 1.6;
+  color: var(--sl-color-gray-3);
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* second sentence drops to its own line on wide viewports, stays inline when
+   the column is narrow enough that a forced break would look ragged */
+.kat-copyright-canonical {
+  display: block;
+}
+
+.kat-copyright a {
+  color: inherit;
+  text-decoration-color: var(--sl-color-gray-4);
+}
+
+.kat-copyright a:hover {
+  color: var(--sl-color-white);
+}

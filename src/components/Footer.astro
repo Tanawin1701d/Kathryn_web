@@ -1,0 +1,23 @@
+---
+// Site-wide footer override: Starlight's default footer (edit link, last
+// updated, pagination) followed by the copyright line.
+//
+// The documentation carries no license grant — all rights reserved — so this
+// notice appears on every page to make the claim explicit and to give any
+// mirror-takedown request something concrete to point at. It pairs with the
+// <meta name="copyright"> tag registered in astro.config.mjs and with
+// COPYRIGHT.md at the repo root; keep the three in sync.
+import Default from '@astrojs/starlight/components/Footer.astro';
+
+const year = new Date().getFullYear();
+---
+
+<Default {...Astro.props}><slot /></Default>
+
+<p class="kat-copyright">
+  © {year} Tanawin Devaveja. All rights reserved.
+  <span class="kat-copyright-canonical">
+    The canonical version of this documentation is published at
+    <a href="https://kathryn-tools.org">kathryn-tools.org</a>.
+  </span>
+</p>
